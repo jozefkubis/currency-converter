@@ -46,12 +46,10 @@ export default function App() {
         type="text"
         value={amount}
         onChange={(e) => setAmount(Number(e.target.value))}
-        disabled={isLoading}
       />
       <select
         value={fromCurrency}
         onChange={(e) => setFromCurrency(e.target.value)}
-        disabled={isLoading}
       >
         <option value="USD">USD</option>
         <option value="EUR">EUR</option>
@@ -61,16 +59,19 @@ export default function App() {
       <select
         value={toCurrency}
         onChange={(e) => setToCurrency(e.target.value)}
-        disabled={isLoading}
       >
         <option value="USD">USD</option>
         <option value="EUR">EUR</option>
         <option value="CAD">CAD</option>
         <option value="INR">INR</option>
       </select>
-      <p>
-        {rate} {toCurrency}
-      </p>
+      {!isLoading ? (
+        <p>
+          {rate} {toCurrency}
+        </p>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   )
 }
